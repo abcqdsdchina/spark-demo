@@ -14,7 +14,7 @@ import java.util.Set;
  */
 public class Java6SparkDemo {
     public static void main(String[] args) {
-        SparkConf conf = new SparkConf().setAppName("Java8SparkDemo").setMaster("local[1000]");
+        SparkConf conf = new SparkConf().setAppName("SparkDemo").setMaster("local[1000]");
         JavaSparkContext context = new JavaSparkContext(conf);
         JavaRDD<String> lines = context.textFile(Java6SparkDemo.class.getResource(".").getFile() + File.separator + "SparkDemo.iml");
 
