@@ -21,7 +21,6 @@ public class Java8SparkDemo {
         SparkConf conf = new SparkConf().setAppName("SparkDemo").setMaster("local[1000]");
         try (JavaSparkContext context = new JavaSparkContext(conf)) {
             JavaRDD<String> lines = context.textFile(Java8SparkDemo.class.getResource(".").getFile() + File.separator + "SparkDemo.iml");
-
             Set<String> updatedIndexCodes = lines.map(line -> {
                 Set<String> indexCodes = new HashSet<>();
                 String[] columns = line.split("\\|");
