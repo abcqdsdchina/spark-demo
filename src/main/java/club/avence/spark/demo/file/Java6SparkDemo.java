@@ -1,3 +1,5 @@
+package club.avence.spark.demo.file;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
