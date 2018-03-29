@@ -25,7 +25,6 @@ public class Java6SparkDemo {
         try {
             context = new JavaSparkContext(conf);
             JavaRDD<String> lines = context.textFile(Java6SparkDemo.class.getResource("/").getFile() + File.separator + "SparkDemo.iml");
-
             List<String> updatedIndexCodes = lines.map(new Function<String, String>() {
                 @Override
                 public String call(String line) {
@@ -35,10 +34,13 @@ public class Java6SparkDemo {
                     }
                     return null;
                 }
+            }).filter(new Function<String, Boolean>() {
+                @Override
+                public Boolean call(String indexCode) {
+                    return StringUtils.isNotBlank(indexCode);
+                }
             }).distinct().collect();
             log.info("去重的指标代码数量：{}。", updatedIndexCodes.size());
-        } catch (Exception e) {
-            throw e;
         } finally {
             IOUtils.closeQuietly(context);
         }

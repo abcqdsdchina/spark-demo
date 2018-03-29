@@ -1,5 +1,6 @@
 package club.avence.spark.demo.file;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -23,7 +24,7 @@ public class Java8SparkDemo {
             List<String> updatedIndexCodes = lines.map(line -> {
                 String[] columns = line.split("\\|");
                 return columns[2] + "|" + columns[3];
-            }).distinct().collect();
+            }).filter(StringUtils::isNotBlank).distinct().collect();
             log.info("去重的年度指标串数量：{}", updatedIndexCodes.size());
         }
     }
